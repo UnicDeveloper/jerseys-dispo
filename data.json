@@ -1,0 +1,21 @@
+{
+  "updatedAt": null,
+  "numbers": {},
+  "unnumbered": [
+    {
+      "id": "sin-1",
+      "label": "Camiseta staff",
+      "holder": ""
+    },
+    {
+      "id": "sin-2",
+      "label": "Cuerpo técnico",
+      "holder": ""
+    },
+    {
+      "id": "sin-3",
+      "label": "Utilería / extra sin dorsal",
+      "holder": ""
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Red Knights · Dorsales disponibles</title>
+    <meta name="description" content="Consulta qué números de la equipación reversible de Red Knights están libres u ocupados." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%238b1118' d='M32 4l22 8v16c0 16-10 28-22 32C20 56 10 44 10 28V12z'/%3E%3Cpath fill='%23d4af37' d='M32 10l16 6v12c0 12-7 21-16 24-9-3-16-12-16-24V16z'/%3E%3Cpath fill='%23111012' d='M32 18l10 4v8c0 8-4 13-10 16-6-3-10-8-10-16v-8z'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand">
+        <svg class="crest" viewBox="0 0 64 64" aria-hidden="true">
+          <path fill="#8b1118" d="M32 4l22 8v16c0 16-10 28-22 32C20 56 10 44 10 28V12z" />
+          <path fill="#d4af37" d="M32 10l16 6v12c0 12-7 21-16 24-9-3-16-12-16-24V16z" />
+          <path fill="#111012" d="M32 18l10 4v8c0 8-4 13-10 16-6-3-10-8-10-16v-8z" />
+        </svg>
+        <div>
+          <p class="eyebrow">Club de fútbol</p>
+          <h1>Red Knights</h1>
+          <p class="subtitle">Caballeros Rojos · Equipación reversible</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <p id="updated-label" class="updated"></p>
+        <div class="action-row">
+          <button type="button" class="btn gold hidden" id="btn-publish">Publicar</button>
+          <button type="button" class="btn ghost" id="btn-admin"></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="stats" id="stats"></div>
+        <div class="toolbar">
+          <label class="search">
+            <span class="sr-only">Buscar número o jugador</span>
+            <input id="search" type="search" placeholder="Buscar número o jugador…" autocomplete="off" />
+          </label>
+          <div class="filters" role="tablist" aria-label="Filtro de dorsales">
+            <button type="button" class="chip active" data-filter="all">Todos</button>
+            <button type="button" class="chip" data-filter="free">Disponibles</button>
+            <button type="button" class="chip" data-filter="taken">Ocupados</button>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="numbers-title">
+        <div class="section-head">
+          <h2 id="numbers-title">Dorsales 0–99</h2>
+          <p>Tocá un número para ver quién lo usa. En modo admin podés ocuparlo o liberarlo.</p>
+        </div>
+        <div id="grid" class="grid"></div>
+        <p id="empty-numbers" class="empty hidden">Ningún dorsal coincide con la búsqueda.</p>
+      </section>
+
+      <section class="unnumbered-section" aria-labelledby="unnumbered-title">
+        <div class="section-head">
+          <div>
+            <h2 id="unnumbered-title">Camisetas sin número</h2>
+            <p>Piezas de la equipación que no llevan dorsal: staff, cuerpo técnico u extras.</p>
+          </div>
+          <button type="button" class="btn gold hidden" id="btn-add-unnumbered">Agregar camiseta</button>
+        </div>
+        <div id="unnumbered-list" class="unnumbered-list"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Red Knights · Los jugadores ven esta página. El admin entra, marca números y publica para que todos lo vean.</p>
+    </footer>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-card">
+        <button type="button" class="icon-close" id="modal-close" aria-label="Cerrar">×</button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status"></div>
+
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
