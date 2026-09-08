@@ -1,6 +1,15 @@
 {
-  "updatedAt": null,
-  "numbers": {},
+  "updatedAt": "2026-09-08T15:36:10.232Z",
+  "numbers": {
+    "1": { "name": "Vicente Venegas" },
+    "2": { "name": "Camiseta del Club" },
+    "3": { "name": "Tyrone Villavicencio" },
+    "4": { "name": "A. Cruz" },
+    "6": { "name": "J.Astudillo" },
+    "7": { "name": "Mastias Castro" },
+    "30": { "name": "Allen Castro" },
+    "68": { "name": "B. Acevedo" }
+  },
   "unnumbered": [
     {
       "id": "sin-1",

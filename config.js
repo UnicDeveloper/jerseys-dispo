@@ -1,7 +1,8 @@
 /* Cambia la contraseña de admin aquí y vuelve a subir este archivo. */
 window.APP_CONFIG = {
   clubName: "Red Knights",
-  clubNameEs: "Caballeros Rojos",
+  clubNameEs: "Club Deportivo Social y Cultural",
   kitName: "Equipación reversible",
+  sport: "Básquetbol",
   adminPassword: "RedKnights",
 };

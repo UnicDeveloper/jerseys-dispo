@@ -4,26 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Red Knights · Dorsales disponibles</title>
-    <meta name="description" content="Consulta qué números de la equipación reversible de Red Knights están libres u ocupados." />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%238b1118' d='M32 4l22 8v16c0 16-10 28-22 32C20 56 10 44 10 28V12z'/%3E%3Cpath fill='%23d4af37' d='M32 10l16 6v12c0 12-7 21-16 24-9-3-16-12-16-24V16z'/%3E%3Cpath fill='%23111012' d='M32 18l10 4v8c0 8-4 13-10 16-6-3-10-8-10-16v-8z'/%3E%3C/svg%3E" />
+    <meta name="description" content="Consultá qué números de la equipación reversible de básquetbol de Red Knights están libres u ocupados." />
+    <link rel="icon" href="./img/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="bg-glow" aria-hidden="true"></div>
     <header class="topbar">
       <div class="brand">
-        <svg class="crest" viewBox="0 0 64 64" aria-hidden="true">
-          <path fill="#8b1118" d="M32 4l22 8v16c0 16-10 28-22 32C20 56 10 44 10 28V12z" />
-          <path fill="#d4af37" d="M32 10l16 6v12c0 12-7 21-16 24-9-3-16-12-16-24V16z" />
-          <path fill="#111012" d="M32 18l10 4v8c0 8-4 13-10 16-6-3-10-8-10-16v-8z" />
-        </svg>
+        <img class="crest" src="./img/logo.png" alt="Escudo Red Knights" width="112" height="112" />
         <div>
-          <p class="eyebrow">Club de fútbol</p>
+          <p class="eyebrow">Club Deportivo Social y Cultural</p>
           <h1>Red Knights</h1>
-          <p class="subtitle">Caballeros Rojos · Equipación reversible</p>
+          <p class="subtitle">Básquetbol · Equipación reversible · Est. 2025</p>
         </div>
       </div>
       <div class="top-actions">
@@ -36,6 +32,23 @@
     </header>
 
     <main>
+      <section class="kit-showcase" aria-labelledby="kit-title">
+        <div class="section-head">
+          <div>
+            <h2 id="kit-title">Equipación reversible</h2>
+            <p>Una misma camiseta, dos caras: blanca de local y negra de visita, con el escudo del caballero.</p>
+          </div>
+        </div>
+        <button type="button" class="kit-frame" id="btn-kit" aria-label="Ver equipación en grande">
+          <img src="./img/equipacion.jpg" alt="Diseño de la equipación reversible Red Knights: camiseta blanca, camiseta negra y short" />
+        </button>
+        <div class="kit-legend">
+          <span><i class="swatch white"></i> Cara blanca · local</span>
+          <span><i class="swatch black"></i> Cara negra · visita</span>
+          <span><i class="swatch red"></i> Detalles en rojo</span>
+        </div>
+      </section>
+
       <section class="hero">
         <div class="stats" id="stats"></div>
         <div class="toolbar">
@@ -56,6 +69,10 @@
           <h2 id="numbers-title">Dorsales 0–99</h2>
           <p>Tocá un número para ver quién lo usa. En modo admin podés ocuparlo o liberarlo.</p>
         </div>
+        <p class="grid-legend">
+          <span><i class="swatch white"></i> Blanca = libre</span>
+          <span><i class="swatch black"></i> Negra = ocupada</span>
+        </p>
         <div id="grid" class="grid"></div>
         <p id="empty-numbers" class="empty hidden">Ningún dorsal coincide con la búsqueda.</p>
       </section>
@@ -73,7 +90,7 @@
     </main>
 
     <footer>
-      <p>Red Knights · Los jugadores ven esta página. El admin entra, marca números y publica para que todos lo vean.</p>
+      <p>Red Knights · Básquetbol. Los jugadores ven esta página. El admin entra, marca números y publica para que todos lo vean.</p>
     </footer>
 
     <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">

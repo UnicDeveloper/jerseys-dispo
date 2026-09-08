@@ -26,9 +26,11 @@
     addUnnumbered: document.getElementById("btn-add-unnumbered"),
     emptyNumbers: document.getElementById("empty-numbers"),
     modal: document.getElementById("modal"),
+    modalCard: document.querySelector(".modal-card"),
     modalBody: document.getElementById("modal-body"),
     modalClose: document.getElementById("modal-close"),
     toast: document.getElementById("toast"),
+    kitBtn: document.getElementById("btn-kit"),
   };
 
   function toast(message) {
@@ -153,8 +155,9 @@
       .replaceAll('"', "&quot;");
   }
 
-  function openModal(html) {
+  function openModal(html, wide) {
     els.modalBody.innerHTML = html;
+    els.modalCard.classList.toggle("wide", Boolean(wide));
     els.modal.classList.remove("hidden");
     const first = els.modal.querySelector("input, button:not(.icon-close)");
     if (first) first.focus();
@@ -162,6 +165,7 @@
 
   function closeModal() {
     els.modal.classList.add("hidden");
+    els.modalCard.classList.remove("wide");
     els.modalBody.innerHTML = "";
   }
 
@@ -378,6 +382,16 @@
 
   els.addUnnumbered.addEventListener("click", () => unnumberedForm("new"));
   els.publishBtn.addEventListener("click", settingsForm);
+  els.kitBtn.addEventListener("click", () => {
+    openModal(
+      `
+      <h2 id="modal-title">Equipación reversible</h2>
+      <img class="kit-full" src="./img/equipacion.jpg" alt="Camiseta blanca, camiseta negra y short Red Knights" />
+      <p>Cara blanca de local y cara negra de visita. El short combina con ambos lados. Tocá un dorsal abajo para ver si está libre.</p>
+    `,
+      true
+    );
+  });
   els.modalClose.addEventListener("click", closeModal);
   els.modal.addEventListener("click", (event) => {
     if (event.target === els.modal) closeModal();
