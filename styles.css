@@ -243,6 +243,35 @@ footer {
   background: var(--red);
 }
 
+.btn.whatsapp {
+  background: #25d366;
+  border-color: transparent;
+  color: #052e16;
+}
+
+.btn.whatsapp:hover {
+  filter: brightness(1.06);
+  color: #052e16;
+}
+
+.reserve-banner {
+  margin: 0 0 24px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  background: linear-gradient(180deg, rgba(37, 211, 102, 0.12), rgba(7, 7, 7, 0.4));
+}
+
+.reserve-banner h2 {
+  font-size: 28px;
+  margin: 0 0 6px;
+}
+
+.reserve-banner p {
+  margin: 0;
+  color: var(--muted);
+}
+
 .hero {
   margin: 0 0 28px;
   padding: 20px;

@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=5" />
+    <link rel="stylesheet" href="./styles.css?v=6" />
     <style>
       .grid { align-items: start; }
       .jersey-num { height: 54px !important; max-height: 54px !important; clip-path: none !important; }
@@ -59,13 +59,18 @@
         </div>
       </section>
 
+      <section class="reserve-banner" aria-labelledby="reserve-title">
+        <h2 id="reserve-title">Reservá tu número</h2>
+        <p>Elegí un dorsal verde, escribí el nombre que va estampado y te abrimos WhatsApp para mandar a confeccionar la camiseta.</p>
+      </section>
+
       <section aria-labelledby="numbers-title">
         <div class="section-head">
           <h2 id="numbers-title">Dorsales 0–99</h2>
-          <p>Tocá un número para ver quién lo usa. En modo admin podés ocuparlo o liberarlo.</p>
+          <p>Tocá un número verde para reservarlo y pedir la camiseta por WhatsApp. El rojo ya está ocupado.</p>
         </div>
         <p class="grid-legend">
-          <span><i class="swatch green"></i> Verde = libre</span>
+          <span><i class="swatch green"></i> Verde = libre · tocá para reservar</span>
           <span><i class="swatch red"></i> Rojo = ocupada</span>
         </p>
         <div id="grid" class="grid"></div>
@@ -114,7 +119,7 @@
 
     <div id="toast" class="toast hidden" role="status"></div>
 
-    <script src="./config.js?v=5"></script>
-    <script src="./app.js?v=5"></script>
+    <script src="./config.js?v=6"></script>
+    <script src="./app.js?v=6"></script>
   </body>
 </html>

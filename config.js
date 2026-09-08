@@ -5,4 +5,5 @@ window.APP_CONFIG = {
   kitName: "Equipación reversible",
   sport: "Básquetbol",
   adminPassword: "RedKnights",
+  whatsapp: "56923686783",
 };

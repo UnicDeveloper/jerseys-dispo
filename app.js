@@ -98,7 +98,7 @@
         return `
           <button type="button" class="jersey ${taken ? "taken" : "free"}" data-num="${n}">
             <span class="jersey-num">${n}</span>
-            <span class="jersey-who">${taken ? escapeHtml(who) : "Libre"}</span>
+            <span class="jersey-who">${taken ? escapeHtml(who) : "Reservar"}</span>
           </button>
         `;
       })
@@ -295,28 +295,60 @@
     `);
   }
 
+  function whatsappNumber() {
+    return String(config.whatsapp || "56923686783").replace(/\D/g, "");
+  }
+
+  function openWhatsAppOrder(num, playerName) {
+    const name = playerName.trim();
+    if (!name) {
+      toast("Escribí el nombre que va en la camiseta.");
+      return;
+    }
+    const text = [
+      "Hola, quiero reservar un número de Red Knights.",
+      "Quiero mandar a confeccionar la camiseta con este pedido:",
+      "Nombre: " + name,
+      "Número: " + num,
+    ].join("\n");
+    const url = "https://wa.me/" + whatsappNumber() + "?text=" + encodeURIComponent(text);
+    window.open(url, "_blank", "noopener");
+  }
+
   function numberForm(num) {
     const taken = isTaken(num);
     const name = holder(num);
-    if (!state.admin) {
+    if (state.admin) {
       openModal(`
         <h2 id="modal-title">Dorsal ${num}</h2>
-        <p>${taken ? "Ocupado por <strong>" + escapeHtml(name) + "</strong>." : "Este número está libre."}</p>
+        <p>Escribí quién lo usa. Dejalo vacío y guardá para liberarlo.</p>
+        <label class="field">
+          <span>Jugador o staff</span>
+          <input id="player-name" value="${escapeHtml(name)}" placeholder="Ej. Juan Pérez" />
+        </label>
+        <div class="actions">
+          <button type="button" class="btn gold" id="save-number">Guardar</button>
+          <button type="button" class="btn danger" id="free-number">Liberar</button>
+          <button type="button" class="btn ghost" id="open-publish">Publicar</button>
+        </div>
+      `);
+      return;
+    }
+    if (taken) {
+      openModal(`
+        <h2 id="modal-title">Dorsal ${num}</h2>
+        <p>Este número ya está ocupado por <strong>${escapeHtml(name)}</strong>. Elegí uno verde para reservar.</p>
       `);
       return;
     }
     openModal(`
-      <h2 id="modal-title">Dorsal ${num}</h2>
-      <p>Escribí quién lo usa. Dejalo vacío y guardá para liberarlo.</p>
+      <h2 id="modal-title">Reservá el ${num}</h2>
+      <p>Escribí el nombre que querés estampado. Te abrimos WhatsApp para pedir la confección de la camiseta.</p>
       <label class="field">
-        <span>Jugador o staff</span>
-        <input id="player-name" value="${escapeHtml(name)}" placeholder="Ej. Juan Pérez" />
+        <span>Nombre en la camiseta</span>
+        <input id="reserve-name" maxlength="40" placeholder="Ej. R. Sotomayor" autocomplete="name" />
       </label>
-      <div class="actions">
-        <button type="button" class="btn gold" id="save-number">Guardar</button>
-        <button type="button" class="btn danger" id="free-number">Liberar</button>
-        <button type="button" class="btn ghost" id="open-publish">Publicar</button>
-      </div>
+      <button type="button" class="btn whatsapp full" id="send-whatsapp" data-num="${num}">Pedir por WhatsApp</button>
     `);
   }
 
@@ -419,6 +451,9 @@
         toast("Contraseña incorrecta.");
       }
     }
+    if (t.id === "send-whatsapp") {
+      openWhatsAppOrder(t.dataset.num, document.getElementById("reserve-name").value);
+    }
     if (t.id === "save-number") {
       const num = Number(document.querySelector("#modal-title").textContent.replace("Dorsal ", ""));
       assignNumber(num, document.getElementById("player-name").value);
@@ -477,6 +512,10 @@
   els.modal.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && event.target.id === "password") {
       document.getElementById("do-login").click();
+    }
+    if (event.key === "Enter" && event.target.id === "reserve-name") {
+      event.preventDefault();
+      document.getElementById("send-whatsapp").click();
     }
   });
 
