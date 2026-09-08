@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Red Knights · Dorsales disponibles</title>
-    <meta name="description" content="Consultá qué números de la equipación reversible de básquetbol de Red Knights están libres u ocupados." />
+    <title>Red Knights · Números disponibles</title>
+    <meta name="description" content="Consulta qué números del uniforme reversible de básquetbol de Red Knights están libres u ocupados." />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <link rel="icon" href="./img/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=6" />
+    <link rel="stylesheet" href="./styles.css?v=7" />
     <style>
       .grid { align-items: start; }
       .jersey-num { height: 54px !important; max-height: 54px !important; clip-path: none !important; }
@@ -31,7 +31,7 @@
         <div>
           <p class="eyebrow">Club Deportivo Social y Cultural</p>
           <h1>Red Knights</h1>
-          <p class="subtitle">Básquetbol · Equipación reversible · Est. 2025</p>
+          <p class="subtitle">Básquetbol · Uniforme reversible · Est. 2025</p>
         </div>
       </div>
       <div class="top-actions">
@@ -51,7 +51,7 @@
             <span class="sr-only">Buscar número o jugador</span>
             <input id="search" type="search" placeholder="Buscar número o jugador…" autocomplete="off" />
           </label>
-          <div class="filters" role="tablist" aria-label="Filtro de dorsales">
+          <div class="filters" role="tablist" aria-label="Filtro de números">
             <button type="button" class="chip active" data-filter="all">Todos</button>
             <button type="button" class="chip" data-filter="free">Disponibles</button>
             <button type="button" class="chip" data-filter="taken">Ocupados</button>
@@ -60,28 +60,28 @@
       </section>
 
       <section class="reserve-banner" aria-labelledby="reserve-title">
-        <h2 id="reserve-title">Reservá tu número</h2>
-        <p>Elegí un dorsal verde, escribí el nombre que va estampado y te abrimos WhatsApp para mandar a confeccionar la camiseta.</p>
+        <h2 id="reserve-title">Reserva tu número</h2>
+        <p>Elige un número verde, escribe el nombre que va estampado y te abrimos WhatsApp para mandar a confeccionar la camiseta.</p>
       </section>
 
       <section aria-labelledby="numbers-title">
         <div class="section-head">
-          <h2 id="numbers-title">Dorsales 0–99</h2>
-          <p>Tocá un número verde para reservarlo y pedir la camiseta por WhatsApp. El rojo ya está ocupado.</p>
+          <h2 id="numbers-title">Números 0–99</h2>
+          <p>Toca un número verde para reservarlo y pedir la camiseta por WhatsApp. El rojo ya está ocupado.</p>
         </div>
         <p class="grid-legend">
-          <span><i class="swatch green"></i> Verde = libre · tocá para reservar</span>
+          <span><i class="swatch green"></i> Verde = libre · toca para reservar</span>
           <span><i class="swatch red"></i> Rojo = ocupada</span>
         </p>
         <div id="grid" class="grid"></div>
-        <p id="empty-numbers" class="empty hidden">Ningún dorsal coincide con la búsqueda.</p>
+        <p id="empty-numbers" class="empty hidden">Ningún número coincide con la búsqueda.</p>
       </section>
 
       <section class="unnumbered-section" aria-labelledby="unnumbered-title">
         <div class="section-head">
           <div>
             <h2 id="unnumbered-title">Camisetas sin número</h2>
-            <p>Piezas de la equipación que no llevan dorsal: staff, cuerpo técnico u extras.</p>
+            <p>Piezas del uniforme que no llevan número: staff, cuerpo técnico u extras.</p>
           </div>
           <button type="button" class="btn gold hidden" id="btn-add-unnumbered">Agregar camiseta</button>
         </div>
@@ -91,12 +91,12 @@
       <section class="kit-showcase" aria-labelledby="kit-title">
         <div class="section-head">
           <div>
-            <h2 id="kit-title">Equipación reversible</h2>
+            <h2 id="kit-title">Uniforme reversible</h2>
             <p>Una misma camiseta, dos caras: blanca de local y negra de visita, con el escudo del caballero.</p>
           </div>
         </div>
-        <button type="button" class="kit-frame" id="btn-kit" aria-label="Ver equipación en grande">
-          <img src="./img/equipacion.jpg?v=4" width="340" alt="Diseño de la equipación reversible Red Knights: camiseta blanca, camiseta negra y short" />
+        <button type="button" class="kit-frame" id="btn-kit" aria-label="Ver uniforme en grande">
+          <img src="./img/equipacion.jpg?v=4" width="340" alt="Diseño del uniforme reversible Red Knights: camiseta blanca, camiseta negra y short" />
         </button>
         <div class="kit-legend">
           <span><i class="swatch white"></i> Cara blanca · local</span>
@@ -119,7 +119,7 @@
 
     <div id="toast" class="toast hidden" role="status"></div>
 
-    <script src="./config.js?v=6"></script>
-    <script src="./app.js?v=6"></script>
+    <script src="./config.js?v=7"></script>
+    <script src="./app.js?v=7"></script>
   </body>
 </html>

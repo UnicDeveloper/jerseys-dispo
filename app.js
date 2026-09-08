@@ -53,7 +53,7 @@
     if (!iso) return "Todavía no hay cambios publicados";
     const date = new Date(iso);
     if (Number.isNaN(date.getTime())) return "";
-    return "Actualizado " + date.toLocaleString("es-AR");
+    return "Actualizado " + date.toLocaleString("es-CL");
   }
 
   function matchesQuery(num) {
@@ -81,8 +81,8 @@
     const unnumberedTaken = (state.data.unnumbered || []).filter((item) => item.holder).length;
     const unnumberedFree = (state.data.unnumbered || []).length - unnumberedTaken;
     els.stats.innerHTML = `
-      <div class="stat"><b>${100 - taken}</b><span>dorsales libres</span></div>
-      <div class="stat"><b>${taken}</b><span>dorsales ocupados</span></div>
+      <div class="stat"><b>${100 - taken}</b><span>números libres</span></div>
+      <div class="stat"><b>${taken}</b><span>números ocupados</span></div>
       <div class="stat"><b>${unnumberedFree}</b><span>camisetas sin número libres</span></div>
     `;
     els.updated.textContent = formatWhen(state.data.updatedAt);
@@ -218,7 +218,7 @@
 
     if (!settings.token || !settings.owner || !settings.repo) {
       downloadData();
-      toast("Descargué data.json. Subilo al repo para que lo vean todos.");
+      toast("Se descargó data.json. Súbelo al repo para que lo vean todos.");
       return;
     }
 
@@ -235,7 +235,7 @@
       const currentJson = await current.json();
       const sha = current.ok ? currentJson.sha : undefined;
       const body = {
-        message: "Actualizar dorsales Red Knights",
+        message: "Actualizar números Red Knights",
         content: toBase64(JSON.stringify(state.data, null, 2) + "\n"),
         sha,
       };
@@ -251,7 +251,7 @@
       toast("Publicado. En un minuto lo ven todos en la web.");
     } catch (error) {
       downloadData();
-      toast(error.message + " · Te descargué data.json para subirlo a mano.");
+      toast(error.message + " · Se descargó data.json para que lo subas a mano.");
     }
   }
 
@@ -270,7 +270,7 @@
   function loginForm() {
     openModal(`
       <h2 id="modal-title">Admin</h2>
-      <p>Entrá con la contraseña de <code>config.js</code>. Después podés marcar dorsales y publicar.</p>
+      <p>Entra con la contraseña de <code>config.js</code>. Después puedes marcar números y publicar.</p>
       <label class="field">
         <span>Contraseña</span>
         <input id="password" type="password" autocomplete="current-password" />
@@ -284,7 +284,7 @@
     const current = { ...guessed, ...githubSettings() };
     openModal(`
       <h2 id="modal-title">Publicar cambios</h2>
-      <p>Para que los jugadores lo vean en GitHub Pages, pegá un token con permiso de Contents. Si no, se descarga <code>data.json</code> para subirlo vos.</p>
+      <p>Para que los jugadores lo vean en GitHub Pages, pega un token con permiso de Contents. Si no, se descarga <code>data.json</code> para que lo subas tú.</p>
       <label class="field"><span>Usuario de GitHub</span><input id="gh-owner" value="${escapeHtml(current.owner || "")}" /></label>
       <label class="field"><span>Repositorio</span><input id="gh-repo" value="${escapeHtml(current.repo || "")}" /></label>
       <label class="field"><span>Token</span><input id="gh-token" type="password" value="${escapeHtml(current.token || "")}" placeholder="ghp_…" /></label>
@@ -302,7 +302,7 @@
   function openWhatsAppOrder(num, playerName) {
     const name = playerName.trim();
     if (!name) {
-      toast("Escribí el nombre que va en la camiseta.");
+      toast("Escribe el nombre que va en la camiseta.");
       return;
     }
     const text = [
@@ -321,7 +321,7 @@
     if (state.admin) {
       openModal(`
         <h2 id="modal-title">Dorsal ${num}</h2>
-        <p>Escribí quién lo usa. Dejalo vacío y guardá para liberarlo.</p>
+        <p>Escribe quién lo usa. Déjalo vacío y guarda para liberarlo.</p>
         <label class="field">
           <span>Jugador o staff</span>
           <input id="player-name" value="${escapeHtml(name)}" placeholder="Ej. Juan Pérez" />
@@ -337,13 +337,13 @@
     if (taken) {
       openModal(`
         <h2 id="modal-title">Dorsal ${num}</h2>
-        <p>Este número ya está ocupado por <strong>${escapeHtml(name)}</strong>. Elegí uno verde para reservar.</p>
+        <p>Este número ya está ocupado por <strong>${escapeHtml(name)}</strong>. Elige uno verde para reservar.</p>
       `);
       return;
     }
     openModal(`
-      <h2 id="modal-title">Reservá el ${num}</h2>
-      <p>Escribí el nombre que querés estampado. Te abrimos WhatsApp para pedir la confección de la camiseta.</p>
+      <h2 id="modal-title">Reserva el ${num}</h2>
+      <p>Escribe el nombre que quieres estampado. Te abrimos WhatsApp para pedir la confección de la camiseta.</p>
       <label class="field">
         <span>Nombre en la camiseta</span>
         <input id="reserve-name" maxlength="40" placeholder="Ej. R. Sotomayor" autocomplete="name" />
@@ -383,7 +383,7 @@
     else state.data.numbers[key] = { name: name.trim() };
     persistDraft();
     render();
-    toast("Número " + num + (name.trim() ? " ocupado" : " liberado") + ". Publicá para que lo vean todos.");
+    toast("Número " + num + (name.trim() ? " ocupado" : " liberado") + ". Publica para que lo vean todos.");
   }
 
   els.search.addEventListener("input", () => {
@@ -415,9 +415,9 @@
   els.kitBtn.addEventListener("click", () => {
     openModal(
       `
-      <h2 id="modal-title">Equipación reversible</h2>
+      <h2 id="modal-title">Uniforme reversible</h2>
       <img class="kit-full" src="./img/equipacion.jpg" alt="Camiseta blanca, camiseta negra y short Red Knights" />
-      <p>Cara blanca de local y cara negra de visita. El short combina con ambos lados. Tocá un dorsal abajo para ver si está libre.</p>
+      <p>Cara blanca de local y cara negra de visita. El short combina con ambos lados. Toca un número abajo para ver si está libre.</p>
     `,
       true
     );
@@ -446,7 +446,7 @@
         sessionStorage.setItem(STORAGE_SESSION, "1");
         closeModal();
         render();
-        toast("Modo admin activo. Marcá números y publicá.");
+        toast("Modo admin activo. Marca números y publica.");
       } else {
         toast("Contraseña incorrecta.");
       }
@@ -469,7 +469,7 @@
       const isNew = t.dataset.new === "1";
       const label = document.getElementById("kit-label").value.trim();
       const holderName = document.getElementById("kit-holder").value.trim();
-      if (!label) return toast("Poné un nombre a la camiseta.");
+      if (!label) return toast("Ponle un nombre a la camiseta.");
       if (isNew) state.data.unnumbered.push({ id, label, holder: holderName });
       else {
         const item = state.data.unnumbered.find((x) => x.id === id);
@@ -495,7 +495,7 @@
       state.data.updatedAt = new Date().toISOString();
       persistDraft();
       downloadData();
-      toast("data.json descargado. Reemplazalo en el repo.");
+      toast("data.json descargado. Reemplázalo en el repo.");
     }
     if (t.id === "save-gh") {
       const next = {

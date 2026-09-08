@@ -2,7 +2,7 @@
 window.APP_CONFIG = {
   clubName: "Red Knights",
   clubNameEs: "Club Deportivo Social y Cultural",
-  kitName: "Equipación reversible",
+  kitName: "Uniforme reversible",
   sport: "Básquetbol",
   adminPassword: "RedKnights",
   whatsapp: "56923686783",
