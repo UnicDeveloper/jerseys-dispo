@@ -5,11 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Red Knights · Dorsales disponibles</title>
     <meta name="description" content="Consultá qué números de la equipación reversible de básquetbol de Red Knights están libres u ocupados." />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <link rel="icon" href="./img/logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=4" />
+    <style>
+      .jersey.free .jersey-body {
+        background: #16a34a !important;
+        color: #fff !important;
+      }
+      .jersey.taken .jersey-body {
+        background: #e10600 !important;
+        color: #fff !important;
+      }
+      .kit-frame,
+      .kit-frame img {
+        width: min(100%, 340px) !important;
+        max-width: 340px !important;
+      }
+    </style>
   </head>
   <body>
     <div class="bg-glow" aria-hidden="true"></div>
@@ -79,7 +95,7 @@
           </div>
         </div>
         <button type="button" class="kit-frame" id="btn-kit" aria-label="Ver equipación en grande">
-          <img src="./img/equipacion.jpg" width="640" alt="Diseño de la equipación reversible Red Knights: camiseta blanca, camiseta negra y short" />
+          <img src="./img/equipacion.jpg?v=4" width="340" alt="Diseño de la equipación reversible Red Knights: camiseta blanca, camiseta negra y short" />
         </button>
         <div class="kit-legend">
           <span><i class="swatch white"></i> Cara blanca · local</span>
@@ -102,7 +118,7 @@
 
     <div id="toast" class="toast hidden" role="status"></div>
 
-    <script src="./config.js"></script>
-    <script src="./app.js"></script>
+    <script src="./config.js?v=4"></script>
+    <script src="./app.js?v=4"></script>
   </body>
 </html>

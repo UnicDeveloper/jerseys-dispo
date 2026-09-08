@@ -189,7 +189,7 @@ footer {
 
 .kit-frame {
   display: block;
-  width: min(100%, 560px);
+  width: min(100%, 340px);
   margin-inline: auto;
   padding: 0;
   border: 1px solid var(--line);
@@ -203,7 +203,7 @@ footer {
 .kit-frame img {
   display: block;
   width: 100%;
-  max-width: 560px;
+  max-width: 340px;
   height: auto;
 }
 
@@ -359,9 +359,9 @@ footer {
 
 .jersey-body {
   position: relative;
-  min-height: 96px;
-  padding: 20px 8px 10px;
-  clip-path: polygon(10% 0, 38% 0, 50% 12%, 62% 0, 90% 0, 100% 16%, 100% 100%, 0 100%, 0 16%);
+  min-height: 88px;
+  padding: 18px 6px 8px;
+  border-radius: 10px;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
@@ -386,23 +386,21 @@ footer {
 }
 
 .jersey.free .jersey-body {
-  background: linear-gradient(180deg, #2ecc71, var(--green-deep));
-  box-shadow: none;
+  background: #16a34a;
   color: #fff;
 }
 
 .jersey.free .who {
-  color: #e8ffe9;
+  color: #ecfdf3;
 }
 
 .jersey.taken .jersey-body {
-  background: linear-gradient(180deg, #ff2a22, var(--red-deep));
-  box-shadow: none;
+  background: #e10600;
   color: #fff;
 }
 
 .jersey.taken .who {
-  color: #ffe3e0;
+  color: #ffe8e6;
 }
 
 .unnumbered-section {
