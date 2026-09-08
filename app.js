@@ -97,10 +97,8 @@
         const who = holder(n);
         return `
           <button type="button" class="jersey ${taken ? "taken" : "free"}" data-num="${n}">
-            <span class="jersey-body">
-              <span class="num">${n}</span>
-              <span class="who">${taken ? who : "Libre"}</span>
-            </span>
+            <span class="jersey-num">${n}</span>
+            <span class="jersey-who">${taken ? escapeHtml(who) : "Libre"}</span>
           </button>
         `;
       })
