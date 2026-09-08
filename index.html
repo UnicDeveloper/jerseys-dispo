@@ -32,23 +32,6 @@
     </header>
 
     <main>
-      <section class="kit-showcase" aria-labelledby="kit-title">
-        <div class="section-head">
-          <div>
-            <h2 id="kit-title">Equipación reversible</h2>
-            <p>Una misma camiseta, dos caras: blanca de local y negra de visita, con el escudo del caballero.</p>
-          </div>
-        </div>
-        <button type="button" class="kit-frame" id="btn-kit" aria-label="Ver equipación en grande">
-          <img src="./img/equipacion.jpg" alt="Diseño de la equipación reversible Red Knights: camiseta blanca, camiseta negra y short" />
-        </button>
-        <div class="kit-legend">
-          <span><i class="swatch white"></i> Cara blanca · local</span>
-          <span><i class="swatch black"></i> Cara negra · visita</span>
-          <span><i class="swatch red"></i> Detalles en rojo</span>
-        </div>
-      </section>
-
       <section class="hero">
         <div class="stats" id="stats"></div>
         <div class="toolbar">
@@ -70,8 +53,8 @@
           <p>Tocá un número para ver quién lo usa. En modo admin podés ocuparlo o liberarlo.</p>
         </div>
         <p class="grid-legend">
-          <span><i class="swatch white"></i> Blanca = libre</span>
-          <span><i class="swatch black"></i> Negra = ocupada</span>
+          <span><i class="swatch green"></i> Verde = libre</span>
+          <span><i class="swatch red"></i> Rojo = ocupada</span>
         </p>
         <div id="grid" class="grid"></div>
         <p id="empty-numbers" class="empty hidden">Ningún dorsal coincide con la búsqueda.</p>
@@ -86,6 +69,23 @@
           <button type="button" class="btn gold hidden" id="btn-add-unnumbered">Agregar camiseta</button>
         </div>
         <div id="unnumbered-list" class="unnumbered-list"></div>
+      </section>
+
+      <section class="kit-showcase" aria-labelledby="kit-title">
+        <div class="section-head">
+          <div>
+            <h2 id="kit-title">Equipación reversible</h2>
+            <p>Una misma camiseta, dos caras: blanca de local y negra de visita, con el escudo del caballero.</p>
+          </div>
+        </div>
+        <button type="button" class="kit-frame" id="btn-kit" aria-label="Ver equipación en grande">
+          <img src="./img/equipacion.jpg" width="640" alt="Diseño de la equipación reversible Red Knights: camiseta blanca, camiseta negra y short" />
+        </button>
+        <div class="kit-legend">
+          <span><i class="swatch white"></i> Cara blanca · local</span>
+          <span><i class="swatch black"></i> Cara negra · visita</span>
+          <span><i class="swatch red"></i> Detalles en rojo</span>
+        </div>
       </section>
     </main>
 

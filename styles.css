@@ -4,6 +4,8 @@
   --line: rgba(255, 255, 255, 0.14);
   --red: #e10600;
   --red-deep: #8a0400;
+  --green: #1aa34a;
+  --green-deep: #0e6d31;
   --ink: #f5f5f5;
   --muted: #b7b7b7;
   --silver: #c9c9c9;
@@ -182,16 +184,17 @@ footer {
 }
 
 .kit-showcase {
-  margin: 10px 0 24px;
+  margin: 8px 0 40px;
 }
 
 .kit-frame {
   display: block;
-  width: 100%;
+  width: min(100%, 560px);
+  margin-inline: auto;
   padding: 0;
   border: 1px solid var(--line);
   background: #000;
-  border-radius: 18px;
+  border-radius: 14px;
   overflow: hidden;
   cursor: zoom-in;
   box-shadow: var(--shadow);
@@ -200,12 +203,14 @@ footer {
 .kit-frame img {
   display: block;
   width: 100%;
+  max-width: 560px;
   height: auto;
 }
 
 .kit-legend {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 14px 22px;
   margin-top: 12px;
   color: var(--muted);
@@ -228,6 +233,10 @@ footer {
 
 .swatch.black {
   background: #111;
+}
+
+.swatch.green {
+  background: var(--green);
 }
 
 .swatch.red {
@@ -302,6 +311,11 @@ footer {
   border-color: var(--red);
 }
 
+.chip[data-filter="free"].active {
+  background: var(--green);
+  border-color: var(--green);
+}
+
 .section-head {
   display: flex;
   justify-content: space-between;
@@ -372,23 +386,23 @@ footer {
 }
 
 .jersey.free .jersey-body {
-  background: #f2f2f2;
-  box-shadow: inset 7px 0 0 var(--red), inset -7px 0 0 var(--red);
-  color: #111;
+  background: linear-gradient(180deg, #2ecc71, var(--green-deep));
+  box-shadow: none;
+  color: #fff;
 }
 
 .jersey.free .who {
-  color: #444;
+  color: #e8ffe9;
 }
 
 .jersey.taken .jersey-body {
-  background: linear-gradient(180deg, #2c2c2c, #0b0b0b);
-  box-shadow: inset 7px 0 0 var(--red), inset -7px 0 0 var(--red);
+  background: linear-gradient(180deg, #ff2a22, var(--red-deep));
+  box-shadow: none;
   color: #fff;
 }
 
 .jersey.taken .who {
-  color: #ffb8b3;
+  color: #ffe3e0;
 }
 
 .unnumbered-section {
@@ -426,6 +440,10 @@ footer {
 
 .kit-card.taken {
   border-color: rgba(225, 6, 0, 0.7);
+}
+
+.kit-card.free {
+  border-color: rgba(26, 163, 74, 0.55);
 }
 
 .empty {
