@@ -6,4 +6,6 @@ window.APP_CONFIG = {
   sport: "Básquetbol",
   adminPassword: "RedKnights",
   whatsapp: "56923686783",
+  githubOwner: "UnicDeveloper",
+  githubRepo: "jerseys-dispo",
 };

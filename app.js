@@ -37,7 +37,7 @@
     els.toast.textContent = message;
     els.toast.classList.remove("hidden");
     clearTimeout(toast._t);
-    toast._t = setTimeout(() => els.toast.classList.add("hidden"), 2800);
+    toast._t = setTimeout(() => els.toast.classList.add("hidden"), 4200);
   }
 
   function isTaken(num) {
@@ -136,6 +136,9 @@
     els.adminBtn.textContent = state.admin ? "Salir de admin" : "Entrar como admin";
     els.addUnnumbered.classList.toggle("hidden", !state.admin);
     els.publishBtn.classList.toggle("hidden", !state.admin);
+    if (state.admin) {
+      els.publishBtn.textContent = repoInfo().token ? "Conexión" : "Conectar celular";
+    }
   }
 
   function render() {
@@ -183,22 +186,58 @@
       const repo = parts[0] || `${owner}.github.io`;
       return { owner, repo };
     }
-    return { owner: "", repo: "jerseys-dispo" };
+    return { owner: config.githubOwner || "UnicDeveloper", repo: config.githubRepo || "jerseys-dispo" };
+  }
+
+  function repoInfo() {
+    const saved = githubSettings();
+    const guessed = guessRepo();
+    return {
+      owner: saved.owner || config.githubOwner || guessed.owner || "UnicDeveloper",
+      repo: saved.repo || config.githubRepo || guessed.repo || "jerseys-dispo",
+      token: saved.token || "",
+    };
+  }
+
+  function applyData(json) {
+    state.data = {
+      updatedAt: json.updatedAt || null,
+      numbers: json.numbers || {},
+      unnumbered: Array.isArray(json.unnumbered) ? json.unnumbered : [],
+    };
+  }
+
+  async function loadFromApi() {
+    const { owner, repo } = repoInfo();
+    const res = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/data.json?t=${Date.now()}`,
+      {
+        cache: "no-store",
+        headers: {
+          Accept: "application/vnd.github+json",
+          "X-GitHub-Api-Version": "2022-11-28",
+        },
+      }
+    );
+    if (!res.ok) throw new Error("api");
+    const payload = await res.json();
+    if (!payload.content) throw new Error("api");
+    const text = decodeURIComponent(escape(atob(String(payload.content).replace(/\n/g, ""))));
+    return JSON.parse(text);
   }
 
   async function loadData() {
     try {
-      const res = await fetch(`./data.json?t=${Date.now()}`, { cache: "no-store" });
-      if (!res.ok) throw new Error("No se pudo leer data.json");
-      const json = await res.json();
-      state.data = {
-        updatedAt: json.updatedAt || null,
-        numbers: json.numbers || {},
-        unnumbered: Array.isArray(json.unnumbered) ? json.unnumbered : [],
-      };
+      applyData(await loadFromApi());
     } catch {
-      const draft = localStorage.getItem(STORAGE_DRAFT);
-      if (draft) state.data = JSON.parse(draft);
+      try {
+        const res = await fetch(`./data.json?t=${Date.now()}`, { cache: "no-store" });
+        if (!res.ok) throw new Error("No se pudo leer data.json");
+        applyData(await res.json());
+      } catch {
+        const draft = localStorage.getItem(STORAGE_DRAFT);
+        if (draft) applyData(JSON.parse(draft));
+      }
     }
     render();
   }
@@ -212,18 +251,13 @@
   }
 
   async function publish() {
-    const settings = githubSettings();
+    const settings = repoInfo();
     state.data.updatedAt = new Date().toISOString();
     persistDraft();
 
-    if (!settings.token || !settings.owner || !settings.repo) {
-      downloadData();
-      toast("Se descargó data.json. Súbelo al repo para que lo vean todos.");
-      return;
-    }
+    if (!settings.token || !settings.owner || !settings.repo) return false;
 
-    const path = "data.json";
-    const api = `https://api.github.com/repos/${settings.owner}/${settings.repo}/contents/${path}`;
+    const api = `https://api.github.com/repos/${settings.owner}/${settings.repo}/contents/data.json`;
     const headers = {
       Authorization: `Bearer ${settings.token}`,
       Accept: "application/vnd.github+json",
@@ -234,43 +268,42 @@
       const current = await fetch(api, { headers });
       const currentJson = await current.json();
       const sha = current.ok ? currentJson.sha : undefined;
-      const body = {
-        message: "Actualizar números Red Knights",
-        content: toBase64(JSON.stringify(state.data, null, 2) + "\n"),
-        sha,
-      };
       const saved = await fetch(api, {
         method: "PUT",
         headers: { ...headers, "Content-Type": "application/json" },
-        body: JSON.stringify(body),
+        body: JSON.stringify({
+          message: "Actualizar números Red Knights",
+          content: toBase64(JSON.stringify(state.data, null, 2) + "\n"),
+          sha,
+        }),
       });
       if (!saved.ok) {
         const err = await saved.json().catch(() => ({}));
-        throw new Error(err.message || "GitHub rechazó la publicación");
+        throw new Error(err.message || "GitHub rechazó el guardado");
       }
-      toast("Publicado. En un minuto lo ven todos en la web.");
+      return true;
     } catch (error) {
-      downloadData();
-      toast(error.message + " · Se descargó data.json para que lo subas a mano.");
+      toast(error.message || "No se pudo guardar en la web.");
+      return false;
     }
   }
 
-  function downloadData() {
-    const blob = new Blob([JSON.stringify(state.data, null, 2) + "\n"], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "data.json";
-    a.click();
-    URL.revokeObjectURL(url);
+  async function saveToCloud(okMessage) {
+    persistDraft();
+    render();
+    if (!repoInfo().token) {
+      toast(okMessage + " Conecta este celular una vez para que se vea en la web.");
+      settingsForm();
+      return;
+    }
+    const ok = await publish();
+    if (ok) toast(okMessage + " Ya se ve en la web.");
   }
 
   function loginForm() {
     openModal(`
       <h2 id="modal-title">Admin</h2>
-      <p>Entra con la contraseña de <code>config.js</code>. Después puedes marcar números y publicar.</p>
+      <p>Entra con tu contraseña. Desde el celular puedes marcar números y se guardan solos en la web.</p>
       <label class="field">
         <span>Contraseña</span>
         <input id="password" type="password" autocomplete="current-password" />
@@ -280,18 +313,19 @@
   }
 
   function settingsForm() {
-    const guessed = guessRepo();
-    const current = { ...guessed, ...githubSettings() };
+    const current = repoInfo();
     openModal(`
-      <h2 id="modal-title">Publicar cambios</h2>
-      <p>Para que los jugadores lo vean en GitHub Pages, pega un token con permiso de Contents. Si no, se descarga <code>data.json</code> para que lo subas tú.</p>
+      <h2 id="modal-title">Conectar este celular</h2>
+      <p>Hazlo una sola vez en el teléfono. Después, cada número que marques se actualiza en la página, sin push.</p>
+      <ol class="steps">
+        <li>Abre <a href="https://github.com/settings/tokens/new?scopes=repo&description=RedKnights" target="_blank" rel="noopener">crear token de GitHub</a></li>
+        <li>Deja marcado el permiso <strong>repo</strong> y genera el token</li>
+        <li>Cópialo y pégalo acá. Queda guardado solo en este celular.</li>
+      </ol>
       <label class="field"><span>Usuario de GitHub</span><input id="gh-owner" value="${escapeHtml(current.owner || "")}" /></label>
       <label class="field"><span>Repositorio</span><input id="gh-repo" value="${escapeHtml(current.repo || "")}" /></label>
-      <label class="field"><span>Token</span><input id="gh-token" type="password" value="${escapeHtml(current.token || "")}" placeholder="ghp_…" /></label>
-      <div class="actions">
-        <button type="button" class="btn gold" id="save-gh">Guardar y publicar</button>
-        <button type="button" class="btn ghost" id="only-download">Solo descargar</button>
-      </div>
+      <label class="field"><span>Token</span><input id="gh-token" type="password" value="${escapeHtml(current.token || "")}" placeholder="ghp_…" autocomplete="off" /></label>
+      <button type="button" class="btn gold full" id="save-gh">Guardar conexión</button>
     `);
   }
 
@@ -320,23 +354,22 @@
     const name = holder(num);
     if (state.admin) {
       openModal(`
-        <h2 id="modal-title">Dorsal ${num}</h2>
-        <p>Escribe quién lo usa. Déjalo vacío y guarda para liberarlo.</p>
+        <h2 id="modal-title">Número ${num}</h2>
+        <p>Escribe quién lo usa. Déjalo vacío y guarda para liberarlo. Se actualiza en la web al toque.</p>
         <label class="field">
           <span>Jugador o staff</span>
           <input id="player-name" value="${escapeHtml(name)}" placeholder="Ej. Juan Pérez" />
         </label>
         <div class="actions">
-          <button type="button" class="btn gold" id="save-number">Guardar</button>
-          <button type="button" class="btn danger" id="free-number">Liberar</button>
-          <button type="button" class="btn ghost" id="open-publish">Publicar</button>
+          <button type="button" class="btn gold" id="save-number" data-num="${num}">Guardar</button>
+          <button type="button" class="btn danger" id="free-number" data-num="${num}">Liberar</button>
         </div>
       `);
       return;
     }
     if (taken) {
       openModal(`
-        <h2 id="modal-title">Dorsal ${num}</h2>
+        <h2 id="modal-title">Número ${num}</h2>
         <p>Este número ya está ocupado por <strong>${escapeHtml(name)}</strong>. Elige uno verde para reservar.</p>
       `);
       return;
@@ -372,18 +405,15 @@
       <div class="actions">
         <button type="button" class="btn gold" id="save-kit" data-id="${item.id}" data-new="${creating ? "1" : "0"}">Guardar</button>
         ${creating ? "" : '<button type="button" class="btn danger" id="delete-kit" data-id="' + item.id + '">Borrar</button>'}
-        <button type="button" class="btn ghost" id="open-publish">Publicar</button>
       </div>
     `);
   }
 
-  function assignNumber(num, name) {
+  async function assignNumber(num, name) {
     const key = String(num);
     if (!name.trim()) delete state.data.numbers[key];
     else state.data.numbers[key] = { name: name.trim() };
-    persistDraft();
-    render();
-    toast("Número " + num + (name.trim() ? " ocupado" : " liberado") + ". Publica para que lo vean todos.");
+    await saveToCloud("Número " + num + (name.trim() ? " ocupado." : " liberado."));
   }
 
   els.search.addEventListener("input", () => {
@@ -446,7 +476,12 @@
         sessionStorage.setItem(STORAGE_SESSION, "1");
         closeModal();
         render();
-        toast("Modo admin activo. Marca números y publica.");
+        if (!repoInfo().token) {
+          toast("Conecta este celular una vez para guardar sin push.");
+          settingsForm();
+        } else {
+          toast("Modo admin. Los cambios se guardan solos en la web.");
+        }
       } else {
         toast("Contraseña incorrecta.");
       }
@@ -455,13 +490,11 @@
       openWhatsAppOrder(t.dataset.num, document.getElementById("reserve-name").value);
     }
     if (t.id === "save-number") {
-      const num = Number(document.querySelector("#modal-title").textContent.replace("Dorsal ", ""));
-      assignNumber(num, document.getElementById("player-name").value);
+      await assignNumber(Number(t.dataset.num), document.getElementById("player-name").value);
       closeModal();
     }
     if (t.id === "free-number") {
-      const num = Number(document.querySelector("#modal-title").textContent.replace("Dorsal ", ""));
-      assignNumber(num, "");
+      await assignNumber(Number(t.dataset.num), "");
       closeModal();
     }
     if (t.id === "save-kit") {
@@ -481,37 +514,41 @@
       persistDraft();
       render();
       closeModal();
-      toast("Camiseta sin número actualizada.");
+      await saveToCloud("Camiseta sin número actualizada.");
     }
     if (t.id === "delete-kit") {
       state.data.unnumbered = state.data.unnumbered.filter((x) => x.id !== t.dataset.id);
       persistDraft();
       render();
       closeModal();
-      toast("Camiseta eliminada.");
+      await saveToCloud("Camiseta eliminada.");
     }
     if (t.id === "open-publish") settingsForm();
-    if (t.id === "only-download") {
-      state.data.updatedAt = new Date().toISOString();
-      persistDraft();
-      downloadData();
-      toast("data.json descargado. Reemplázalo en el repo.");
-    }
     if (t.id === "save-gh") {
       const next = {
         owner: document.getElementById("gh-owner").value.trim(),
         repo: document.getElementById("gh-repo").value.trim(),
         token: document.getElementById("gh-token").value.trim(),
       };
+      if (!next.token) {
+        toast("Pega el token para conectar este celular.");
+        return;
+      }
       localStorage.setItem(STORAGE_GITHUB, JSON.stringify(next));
       closeModal();
-      await publish();
+      render();
+      const ok = await publish();
+      toast(ok ? "Celular conectado. Ya puedes marcar números desde acá." : "Revisa el token y vuelve a intentar.");
     }
   });
 
   els.modal.addEventListener("keydown", (event) => {
     if (event.key === "Enter" && event.target.id === "password") {
       document.getElementById("do-login").click();
+    }
+    if (event.key === "Enter" && event.target.id === "player-name") {
+      event.preventDefault();
+      document.getElementById("save-number").click();
     }
     if (event.key === "Enter" && event.target.id === "reserve-name") {
       event.preventDefault();

@@ -549,6 +549,22 @@ footer {
   margin: 0 0 16px;
 }
 
+.modal-card a {
+  color: #86efac;
+}
+
+.steps {
+  margin: 0 0 16px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
 .field {
   display: grid;
   gap: 6px;
