@@ -1,45 +1,126 @@
 {
-  "updatedAt": "2026-09-08T16:07:44.137Z",
+  "updatedAt": "2026-09-09T01:25:22.943Z",
   "numbers": {
-    "1": { "name": "Vicente Venegas" },
-    "2": { "name": "Pedro Vasquez (Camiseta del Club)" },
-    "3": { "name": "Tyrone Villavicencio" },
-    "4": { "name": "Agustin Cruz" },
-    "5": { "name": "Amaru Aviles" },
-    "6": { "name": "Jorge Astudillo" },
-    "7": { "name": "Mastias Castro" },
-    "8": { "name": "Isaias Vivanco" },
-    "9": { "name": "Matias Garrido" },
-    "10": { "name": "Emilio Tobar" },
-    "11": { "name": "Ignacio Andrade" },
-    "12": { "name": "Agustin Urzua" },
-    "13": { "name": "Cristofer Alvarez" },
-    "15": { "name": "Renato Fuentes" },
-    "17": { "name": "Rafael Alarcon" },
-    "18": { "name": "Bruno Fuentes" },
-    "19": { "name": "Angel Castro" },
-    "20": { "name": "Bastian Zuñiga" },
-    "21": { "name": "Juan Jose Vasquez" },
-    "24": { "name": "Israel Zarate" },
-    "25": { "name": "Martin Retamal" },
-    "26": { "name": "Abel Gonzalez" },
-    "27": { "name": "Rafael Sotomayor" },
-    "29": { "name": "Camiseta del club" },
-    "30": { "name": "Allen Castro" },
-    "31": { "name": "Mateo Arredondo" },
-    "32": { "name": "Alonso Arias" },
-    "34": { "name": "Italo Orellana" },
-    "47": { "name": "Gaspar Cisternas" },
-    "63": { "name": "Camiseta del club" },
-    "66": { "name": "Camiseta del club" },
-    "67": { "name": "Mateo Cares" },
-    "68": { "name": "Benjamin Acevedo" },
-    "69": { "name": "Martin Rojo (camiseta de club)" },
-    "77": { "name": "Isaias Pulgar" },
-    "93": { "name": "Camiseta del club" },
-    "42": { "name": "Jose Bascur" },
-    "37": { "name": "Bruno Echavarria" },
-    "23": { "name": "Nelson Galvez" }
+    "1": {
+      "name": "Vicente Venegas"
+    },
+    "2": {
+      "name": "Pedro Vasquez (Camiseta del Club)"
+    },
+    "3": {
+      "name": "Tyrone Villavicencio"
+    },
+    "4": {
+      "name": "Agustin Cruz"
+    },
+    "5": {
+      "name": "Amaru Aviles"
+    },
+    "6": {
+      "name": "Jorge Astudillo"
+    },
+    "7": {
+      "name": "Mastias Castro"
+    },
+    "8": {
+      "name": "Isaias Vivanco"
+    },
+    "9": {
+      "name": "Matias Garrido"
+    },
+    "10": {
+      "name": "Emilio Tobar"
+    },
+    "11": {
+      "name": "Ignacio Andrade"
+    },
+    "12": {
+      "name": "Agustin Urzua"
+    },
+    "13": {
+      "name": "Cristofer Alvarez"
+    },
+    "14": {
+      "name": "Salomon Lizama"
+    },
+    "15": {
+      "name": "Renato Fuentes"
+    },
+    "17": {
+      "name": "Rafael Alarcon"
+    },
+    "18": {
+      "name": "Bruno Fuentes"
+    },
+    "19": {
+      "name": "Angel Castro"
+    },
+    "20": {
+      "name": "Bastian Zuñiga"
+    },
+    "21": {
+      "name": "Juan Jose Vasquez"
+    },
+    "23": {
+      "name": "Nelson Galvez"
+    },
+    "24": {
+      "name": "Israel Zarate"
+    },
+    "25": {
+      "name": "Martin Retamal"
+    },
+    "26": {
+      "name": "Abel Gonzalez"
+    },
+    "27": {
+      "name": "Rafael Sotomayor"
+    },
+    "29": {
+      "name": "Camiseta del club"
+    },
+    "30": {
+      "name": "Allen Castro"
+    },
+    "31": {
+      "name": "Mateo Arredondo"
+    },
+    "32": {
+      "name": "Alonso Arias"
+    },
+    "34": {
+      "name": "Italo Orellana"
+    },
+    "37": {
+      "name": "Bruno Echavarria"
+    },
+    "42": {
+      "name": "Jose Bascur"
+    },
+    "47": {
+      "name": "Gaspar Cisternas"
+    },
+    "63": {
+      "name": "Camiseta del club"
+    },
+    "66": {
+      "name": "Camiseta del club"
+    },
+    "67": {
+      "name": "Mateo Cares"
+    },
+    "68": {
+      "name": "Benjamin Acevedo"
+    },
+    "69": {
+      "name": "Martin Rojo (camiseta de club)"
+    },
+    "77": {
+      "name": "Isaias Pulgar"
+    },
+    "93": {
+      "name": "Camiseta del club"
+    }
   },
   "unnumbered": [
     {
