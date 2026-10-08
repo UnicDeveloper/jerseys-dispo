@@ -1,6 +1,9 @@
 {
-  "updatedAt": "2026-09-09T01:26:05.464Z",
+  "updatedAt": "2026-10-08T13:08:19.441Z",
   "numbers": {
+    "0": {
+      "name": "M. Rojo"
+    },
     "1": {
       "name": "Vicente Venegas"
     },
@@ -40,9 +43,6 @@
     "13": {
       "name": "Cristofer Alvarez"
     },
-    "14": {
-      "name": "Salomon Lizama"
-    },
     "15": {
       "name": "Renato Fuentes"
     },
@@ -60,6 +60,9 @@
     },
     "21": {
       "name": "Juan Jose Vasquez"
+    },
+    "22": {
+      "name": "S. Lizama"
     },
     "23": {
       "name": "Nelson Galvez"
@@ -124,8 +127,14 @@
     "70": {
       "name": "Vicente Muñoz"
     },
+    "75": {
+      "name": "S. Amigo"
+    },
     "77": {
       "name": "Isaias Pulgar"
+    },
+    "91": {
+      "name": "B. Mayorga"
     },
     "93": {
       "name": "Camiseta del club"
