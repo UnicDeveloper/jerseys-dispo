@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T13:08:19.441Z",
+  "updatedAt": "2026-10-08T13:11:08.102Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -99,6 +99,9 @@
     },
     "37": {
       "name": "Bruno Echavarria"
+    },
+    "40": {
+      "name": "E. Ramirez"
     },
     "42": {
       "name": "Jose Bascur"
