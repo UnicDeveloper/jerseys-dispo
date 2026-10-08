@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T13:11:51.288Z",
+  "updatedAt": "2026-10-08T13:11:59.399Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -135,6 +135,9 @@
     },
     "77": {
       "name": "Isaias Pulgar"
+    },
+    "86": {
+      "name": "Camiseta club"
     },
     "91": {
       "name": "B. Mayorga"
