@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T13:11:08.102Z",
+  "updatedAt": "2026-10-08T13:11:51.288Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -141,6 +141,9 @@
     },
     "93": {
       "name": "Camiseta del club"
+    },
+    "94": {
+      "name": "Camiseta club"
     }
   },
   "unnumbered": [
