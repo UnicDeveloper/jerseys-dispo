@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T13:11:59.399Z",
+  "updatedAt": "2026-10-08T13:12:40.912Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -108,6 +108,9 @@
     },
     "47": {
       "name": "Gaspar Cisternas"
+    },
+    "49": {
+      "name": "Camiseta club"
     },
     "60": {
       "name": "Maximo Patrick"
