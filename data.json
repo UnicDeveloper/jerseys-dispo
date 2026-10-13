@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T21:23:19.013Z",
+  "updatedAt": "2026-10-13T21:23:39.759Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -42,6 +42,9 @@
     },
     "13": {
       "name": "Cristofer Alvarez"
+    },
+    "14": {
+      "name": "E. Amigo"
     },
     "15": {
       "name": "Renato Fuentes"
