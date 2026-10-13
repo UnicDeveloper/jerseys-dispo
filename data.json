@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T21:37:23.095Z",
+  "updatedAt": "2026-10-13T21:42:52.394Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -48,6 +48,9 @@
     },
     "15": {
       "name": "N. Villagra"
+    },
+    "16": {
+      "name": "M. Roco"
     },
     "17": {
       "name": "Rafael Alarcon"
