@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T21:25:14.743Z",
+  "updatedAt": "2026-10-13T21:25:25.612Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -93,6 +93,9 @@
     },
     "32": {
       "name": "Alonso Arias"
+    },
+    "33": {
+      "name": "J. Luna"
     },
     "34": {
       "name": "Italo Orellana"
