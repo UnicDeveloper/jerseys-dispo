@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T21:42:52.394Z",
+  "updatedAt": "2026-10-13T21:52:23.639Z",
   "numbers": {
     "0": {
       "name": "M. Rojo"
@@ -114,6 +114,9 @@
     },
     "42": {
       "name": "Jose Bascur"
+    },
+    "45": {
+      "name": "M. Rojo"
     },
     "47": {
       "name": "Gaspar Cisternas"
